@@ -1,3 +1,5 @@
+import { getRandomInt } from "./random";
+
 const readline = require('readline');
 
 const rl = readline.createInterface({
@@ -5,23 +7,16 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-// Method properties
-const random = {
-  getInt(min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-  },
-};
+export interface JeuOptions {
+  min?: number;
+  max?: number;
+}
 
-// 1 - Déclarer les propriétés de la classe Jeu
-// 2 - Définir une interface JeuOptions pour options de Jeu
-// (min et max étant optionnels)
-// 3 - Définir les types pour les params de getInt()
-// 4 - Mettre les méthodes de random dans un fichier random.ts
+export class Jeu {
+  private _nbAlea: number;
+  private _essais: number[] = [];
 
-// Class
-
-class Jeu {
-  constructor(options = {}) {
+  constructor(options: JeuOptions = {}) {
     options = options || {};
 
     // destructurer options en min et max (avec default param)
@@ -29,8 +24,7 @@ class Jeu {
     // const max = (options.max !== undefined) ? options.max : 100;
     const { min = 0, max = 100 } = options;
 
-    this._nbAlea = random.getInt(0, 100);
-    this._essais = [];
+    this._nbAlea = getRandomInt(min, max);
   }
 
   jouer() {
@@ -68,6 +62,3 @@ class Jeu {
     });
   }
 }
-
-const game = new Jeu();
-game.jouer();
