@@ -12,6 +12,12 @@ const random = {
   },
 };
 
+// 1 - Déclarer les propriétés de la classe Jeu
+// 2 - Définir une interface JeuOptions pour options de Jeu
+// (min et max étant optionnels)
+// 3 - Définir les types pour les params de getInt()
+// 4 - Mettre les méthodes de random dans un fichier random.ts
+
 // Class
 
 class Jeu {
